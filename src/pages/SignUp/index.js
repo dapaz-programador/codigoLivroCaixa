@@ -1,4 +1,4 @@
-import React, { useContext} from "react";
+import React, { useContext, useState} from "react";
 import { Platform }from 'react-native';
 
 import {
@@ -14,10 +14,14 @@ import {AuthContext} from '../../contexts/auth';
 
 export default function SignUp(){
 
-    const { user } = useContext(AuthContext)
+    const { SignUp } = useContext(AuthContext)
+    const [nome, setNome] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     function handleSignUp(){
-        console.log(user.nome);
+        //console.log(user.nome);
+        SignUp(email, password, nome);
     }
 
 
@@ -29,26 +33,30 @@ export default function SignUp(){
               enabled
             >
             
-              <AreaInput>
-            
-                  
-                <Input placeholder="Nome"/>
-              
+              <AreaInput>   
+                  <Input
+                   placeholder="Nome"
+                   value= {nome}
+                   onChangeText={(Text) => setNome(text)}
+                   />             
               </AreaInput>
 
               <AreaInput>
-                <Input  placeholder="Seu email"/>
-                 
-                
-              
-              </AreaInput>
+                <Input  
+                   placeholder="Seu email"
+                   value= {email}
+                   onChangeText={(text) => setEmail(text)}
+                   />
+                 </AreaInput>
 
               <AreaInput>
-                <Input  placeholder="Sua senha"/>
-                 
-                
-              
-              </AreaInput>
+                <Input  
+                   placeholder="Sua senha"
+                   value= {password}
+                   onChangeText={(Text) => setPassword(text)}
+                   secureTextEntry={true} // esconde a senha 
+                   />
+                 </AreaInput>
 
               <SubmitButton onPress={handleSignUp}>
                  <SubmitText> Cadastrar</SubmitText>

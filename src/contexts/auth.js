@@ -7,8 +7,16 @@ function AuthProvider({ children }){
         nome: 'Hermes Teste '
 
     });
+
+   async function SignUp(email, password, nome){
+    console.log('email digitado: ', email)
+   }
+
+
+
+
     return(
-        <AuthContext.Provider value={{ user }}>
+        <AuthContext.Provider value={{ user, SignUp }}>
             {children} 
         </AuthContext.Provider>
     )
